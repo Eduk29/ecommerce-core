@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ecommerce-api": "git+ssh://git@github.com:Eduk29/ecommerce-api.git#master",
+    "ecommerce-ui": "git+ssh://git@github.com:Eduk29/ecommerce-ui.git#master",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0"
