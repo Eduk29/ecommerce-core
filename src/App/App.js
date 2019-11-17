@@ -8,6 +8,9 @@ import { UiNavbar } from "ecommerce-ui"
 // Routes
 import { routes } from "../configs/routes"
 
+// Styles
+import "./App.scss"
+
 function App() {
   const handleClickLoginButton = () => {
     console.log("Cliquei")
@@ -15,13 +18,15 @@ function App() {
 
   return (
     <>
-      <UiNavbar
-        authenticatedUser={false}
-        handleClickLoginButton={handleClickLoginButton}
-        hasLoginButton
-        hasMenuButton={false}
-        label="E-Commerce"
-      />
+      <div className="ecommerce__navbar">
+        <UiNavbar
+          authenticatedUser={false}
+          handleClickLoginButton={handleClickLoginButton}
+          hasLoginButton
+          hasMenuButton={false}
+          label="E-Commerce"
+        />
+      </div>
       <BrowserRouter>
         <Switch>
           {routes.map(route => (
