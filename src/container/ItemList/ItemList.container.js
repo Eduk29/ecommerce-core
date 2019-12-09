@@ -1,8 +1,12 @@
+/* eslint-disable class-methods-use-this */
 // React
 import React, { PureComponent } from "react"
 
 // Services
 import * as ProductsService from "ecommerce-api"
+
+// UI
+import { UiProductCard } from "ecommerce-ui"
 
 class ItemList extends PureComponent {
   constructor(props) {
@@ -24,13 +28,22 @@ class ItemList extends PureComponent {
     )
   }
 
+  handleClickAddToCart() {
+    console.log("Click add to cart")
+  }
+
   render() {
-    console.log("State: ", this.state)
-    return (
-      <div>
-        <h1>Container Item List</h1>
-      </div>
-    )
+    const { productList } = this.state
+    console.log("Products: ", productList)
+    return productList.map(product => (
+      <UiProductCard
+        description={product.description}
+        handleClickAddToCart={this.handleClickAddToCart}
+        image={product.urlImage}
+        price={product.price}
+        title={product.title}
+      />
+    ))
   }
 }
 
