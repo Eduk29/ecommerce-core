@@ -6,9 +6,18 @@ import React, { PureComponent } from "react"
 import * as ProductsService from "ecommerce-api"
 
 // UI
-import { UiProductCard } from "ecommerce-ui"
+import { UiContainer, UiGrid, UiProductCard, UiWithStyles } from "ecommerce-ui"
 
-class ItemList extends PureComponent {
+const styles = {
+  gridItem: {
+    padding: "10px 20px",
+  },
+  productItem: {
+    minHeight: 420,
+  },
+}
+
+class ItemListClass extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -34,17 +43,29 @@ class ItemList extends PureComponent {
 
   render() {
     const { productList } = this.state
-    console.log("Products: ", productList)
-    return productList.map(product => (
-      <UiProductCard
-        description={product.description}
-        handleClickAddToCart={this.handleClickAddToCart}
-        image={product.urlImage}
-        price={product.price}
-        title={product.title}
-      />
-    ))
+    const { classes } = this.props
+
+    return (
+      <UiContainer maxWidth="xl" className={classes.container}>
+        <UiGrid container>
+          {productList.map(product => (
+            <UiGrid item xs={3} className={classes.gridItem}>
+              <UiProductCard
+                description={product.description}
+                handleClickAddToCart={this.handleClickAddToCart}
+                image={product.urlImage}
+                price={product.price}
+                title={product.title}
+                className={classes.productItem}
+              />
+            </UiGrid>
+          ))}
+        </UiGrid>
+      </UiContainer>
+    )
   }
 }
+
+const ItemList = UiWithStyles(styles)(ItemListClass)
 
 export { ItemList }
